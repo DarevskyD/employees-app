@@ -34,6 +34,10 @@
   color: #51e03e;
 }
 
+.list-group-item.increase .btn-donate {
+  border: 1px solid #51e03e;
+}
+
 .list-group-item .btn-trash {
   color: #e5383b;
 }
@@ -56,7 +60,7 @@
 }
 
 .list-group-item.increase .list-group-item-label, .list-group-item.increase .list-group-item-input {
-  color: #e09f3e;
+  color: #51e03e;
 }
 
 .list-group-item.increase .btn-thumbs-up {
