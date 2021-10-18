@@ -1,3 +1,6 @@
+import { Component } from "react";
+import nextId, { setPrefix } from "react-id-generator";
+
 import AppFilter from "../app-filter/app-filter";
 import AppInfo from "../app-info/app-info";
 import EmploeesAddForm from "../emploees-add-form/emploees-add-form";
@@ -6,28 +9,59 @@ import SearchPanel from "../search-panel/search-panel";
 
 import "./app.css";
 
-function App() {
+class App extends Component {
+  constructor(props) {
+    setPrefix("emploee-id-");
+    super(props);
+    this.state = {
+      data: [
+        { name: "John S.", salary: 1000, increase: true, id: nextId() },
+        { name: "Mat T.", salary: 800, increase: false, id: nextId() },
+        { name: "Alex D.", salary: 1500, increase: false, id: nextId() },
+      ],
+    };
+  }
 
-  const data = [
-    {name: 'John S.', salary: 1000, increase: true, id: 1},
-    {name: 'Mat T.', salary: 800, increase: false, id: 2},
-    {name: 'Alex D.', salary: 1500, increase: false, id: 3}
-  ]
+  deleteItem = (id) => {
+    this.setState(({ data }) => {
+      const result = data.filter((item) => item.id !== id);
+      return {
+        data: result,
+      };
+    });
+  };
 
+  addItem = (name, salary) => {
+    const newItem = {
+      name,
+      salary,
+      increase: false,
+      id: nextId(),
+    };
 
-  return (
-    <div className="app">
-      <AppInfo />
+    this.setState(({ data }) => {
+      const newArr = [...data, newItem];
+      return {
+        data: newArr,
+      };
+    });
+  };
 
-      <div className="search-panel">
-        <SearchPanel />
-        <AppFilter />
+  render() {
+    return (
+      <div className="app">
+        <AppInfo />
+
+        <div className="search-panel">
+          <SearchPanel />
+          <AppFilter />
+        </div>
+
+        <EmploeesList data={this.state.data} onDelete={this.deleteItem} />
+        <EmploeesAddForm onAdd={this.addItem} />
       </div>
-
-      <EmploeesList data={data}/>
-      <EmploeesAddForm />
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

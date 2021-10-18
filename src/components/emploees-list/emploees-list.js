@@ -2,12 +2,14 @@ import "./emploees-list.css";
 
 import EmploeesListItem from "../emploees-list-item/emploees-list-item";
 
-const EmploeesList = ({data}) => {
+const EmploeesList = ({data, onDelete}) => {
 
   const elements = data.map((item => {
     const {id, ...itemProps} = item;
     return (
-      <EmploeesListItem key={id} {...itemProps} />
+      <EmploeesListItem 
+        key={id} {...itemProps} 
+        onDelete={() => onDelete(id)}/>
     )
   }))
 
