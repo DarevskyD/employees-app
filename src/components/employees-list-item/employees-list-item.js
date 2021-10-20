@@ -1,6 +1,6 @@
-import "./emploees-list-item.css";
+import "./employees-list-item.css";
 
-const EmploeesListItem = (props) => {
+const EmployeesListItem = (props) => {
   const {
     name,
     salary,
@@ -46,4 +46,4 @@ const EmploeesListItem = (props) => {
   );
 };
 
-export default EmploeesListItem;
+export default EmployeesListItem;

@@ -3,15 +3,15 @@ import nextId, { setPrefix } from "react-id-generator";
 
 import AppFilter from "../app-filter/app-filter";
 import AppInfo from "../app-info/app-info";
-import EmploeesAddForm from "../emploees-add-form/emploees-add-form";
-import EmploeesList from "../emploees-list/emploees-list";
+import EmployeesAddForm from "../employees-add-form/employees-add-form";
+import EmployeesList from "../employees-list/employees-list";
 import SearchPanel from "../search-panel/search-panel";
 
 import "./app.css";
 
 class App extends Component {
   constructor(props) {
-    setPrefix("emploee-id-");
+    setPrefix("employee-id-");
     super(props);
     this.state = {
       data: [
@@ -107,26 +107,26 @@ class App extends Component {
 
   render() {
     const {data, term} = this.state;
-    const emploees = this.state.data.length;
+    const employees = this.state.data.length;
     const increased = this.state.data.filter(item => item.increase).length;
     const visibleData = this.searchEmloyee(data, term);
 
     return (
       <div className="app">
-        <AppInfo emploees={emploees} increased={increased}/>
+        <AppInfo employees={employees} increased={increased}/>
 
         <div className="search-panel">
           <SearchPanel onUpdateSearch={this.onUpdateSearch}/>
           <AppFilter />
         </div>
 
-        <EmploeesList
+        <EmployeesList
           data={visibleData}
           onDelete={this.deleteItem}
           onToggleIncrease={this.onToggleIncrease}
           onToggleGrow={this.onToggleGrow}
         />
-        <EmploeesAddForm onAdd={this.addItem} />
+        <EmployeesAddForm onAdd={this.addItem} />
       </div>
     );
   }
