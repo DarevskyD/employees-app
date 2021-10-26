@@ -27,6 +27,7 @@ const EmployeesListItem = (props) => {
         type="text"
         className="list-group-item-input"
         defaultValue={salary + "$"}
+        readOnly
       />
       <div className="d-flex justify-content-center align-items-center">
         <button
